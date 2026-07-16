@@ -72,11 +72,12 @@
     const audio = document.getElementById('audioPlayer');
     const playIcon = document.getElementById('playAudio');
     const lotiplayer = document.getElementById('dotlottiePlayer');
+    const dotLottieInstance = lotiplayer.dotLottie;
 
     playIcon.addEventListener('click', () => {
       if (audio.paused) {
         audio.play();
-        lotiplayer.play();
+        dotLottieInstance.play();
         playIcon.className = 'fas fa-pause-circle play-icon';
       } else {
         audio.pause();
