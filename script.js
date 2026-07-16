@@ -1,4 +1,4 @@
-
+console.log('script.js just starting...');
 // 1. Get a reference to the element
 const playerElement = document.getElementById('dotlottiePlayer');
 
