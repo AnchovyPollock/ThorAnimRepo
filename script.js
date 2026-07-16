@@ -1,42 +1,90 @@
-// script.js - Fixed version -  Wait for dom is added
-console.log('script.js just starting...');
+// script.js
+console.log('📝 script.js loaded');
 
-// Wait for DOM to be ready
+// Wait for DOM
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM ready, looking for player...');
+    console.log('DOM ready, setting up...');
     
-    // 1. Get a reference to the element
-    const playerElement = document.getElementById('dotlottiePlayer');
+    const audio = document.getElementById('audioPlayer');
+    const playIcon = document.getElementById('playAudio');
+    const lotiplayer = document.getElementById('dotlottiePlayer');
     
-    if (!playerElement) {
-        console.error('❌ Player element not found! Check the ID.');
+    if (!lotiplayer) {
+        console.error('❌ Player not found!');
         return;
     }
     
-    console.log('✅ Player element found:', playerElement);
+    console.log('✅ Player found');
     
-    // 2. Ensure the component is ready before calling its methods
-    playerElement.addEventListener('load', function() {
-        console.log('🎯 Load event fired!');
-        
-        // Access the dotLottie instance
-        const dotLottieInstance = playerElement.dotLottie;
-        
-        if (!dotLottieInstance) {
-            console.error('❌ dotLottie instance not available');
-            return;
+    let dotLottieInstance = null;
+    let isReady = false;
+
+    function initLottie() {
+        if (lotiplayer.dotLottie) {
+            dotLottieInstance = lotiplayer.dotLottie;
+            isReady = true;
+            console.log('✅ Lottie ready');
+            
+            // Set marker if available
+            try {
+                if (typeof dotLottieInstance.setMarker === 'function') {
+                    dotLottieInstance.setMarker('Wizard');
+                    console.log('✅ Marker set');
+                }
+            } catch (e) {
+                console.warn('⚠️ Marker error:', e.message);
+            }
+            return true;
         }
-        
-        console.log('✅ dotLottie instance available');
-        
-        // 3. Call the setMarker method with your marker name
+        return false;
+    }
+
+    // Try immediate init
+    if (!initLottie()) {
+        console.log('⏳ Waiting for load...');
+        lotiplayer.addEventListener('load', function() {
+            console.log('🎯 Load event fired!');
+            initLottie();
+        });
+    }
+
+    // Play button
+    playIcon.addEventListener('click', function() {
         try {
-            dotLottieInstance.setMarker('Wizard');
-            console.log('✅ Marker "Wizard" set successfully!');
+            if (audio.paused) {
+                audio.play();
+                playIcon.className = 'fas fa-pause-circle play-icon';
+                console.log('▶️ Playing');
+                
+                if (isReady && dotLottieInstance) {
+                    dotLottieInstance.play();
+                } else {
+                    initLottie();
+                    if (isReady && dotLottieInstance) {
+                        dotLottieInstance.play();
+                    }
+                }
+            } else {
+                audio.pause();
+                playIcon.className = 'fas fa-play-circle play-icon';
+                console.log('⏸ Paused');
+                
+                if (isReady && dotLottieInstance) {
+                    dotLottieInstance.pause();
+                }
+            }
         } catch (error) {
-            console.error('❌ Error setting marker:', error);
-            console.log('💡 Make sure "Wizard" marker exists in your animation');
+            console.error('❌ Error:', error);
         }
-console.log('✅ dotLottie player started successfully.');
-});
+    });
+
+    // Audio ended
+    audio.addEventListener('ended', function() {
+        playIcon.className = 'fas fa-play-circle play-icon';
+        if (dotLottieInstance) {
+            dotLottieInstance.stop();
+        }
+    });
+
+    console.log('🎮 Setup complete');
 });
