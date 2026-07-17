@@ -75,6 +75,16 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
+    // Lottie area Click event handler
+    lotiplayer.addEventListener('click', function() {
+        try {
+            if (isReady && dotLottieInstance) {
+                dotLottieInstance.load();
+                dotLottieInstance.setMarker('Orbit'); //Wizard
+                dotLottieInstance.play();
+                console.log('▶️ Playing Lottie Click ');
+                }
+        }
     // Play button
     playIcon.addEventListener('click', function() {
         try {
