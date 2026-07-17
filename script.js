@@ -32,7 +32,11 @@ document.addEventListener('DOMContentLoaded', function() {
             isReady = dotLottieInstance.isReady; //true;
             if (dotLottieInstance.isReady) {
                 console.log('✅ Lottie ready');
-            } else {console.log('✅ player found but ❌ Player NOT ready!');}
+            } else {
+                    console.log('✅ player found but ❌ Player NOT ready!');
+                    // Force the component to load the Lottie file
+                    dotLottieInstance.load();
+                   }
             
             // Set marker if available
             try {
