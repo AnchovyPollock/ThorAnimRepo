@@ -34,9 +34,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     const markers = dotLottieInstance.markers(1);
                     console.log('🖊️'+markers); //
                     if (isReady && dotLottieInstance) {
-                        //dotLottieInstance.play();
                         dotLottieInstance.autoplay = true;
                         dotLottieInstance.loop = true;
+                        dotLottieInstance.play();
                         console.log('🎈 intro play 🎈');
                     }
                 }
