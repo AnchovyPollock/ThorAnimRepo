@@ -61,10 +61,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!initLottie()) {
         console.log('⏳ Waiting for load...');
         lotiplayer.addEventListener('load', function() {
-            console.log('🎯 Load event fired!');
-            initLottie();
-        });
-    }
+            console.log('🎯 1st Load event fired!');
+            initLottie(); });
+        } else if (!dotLottieInstance.isLoaded) {
+                console.log('🎯 Lottie initatied but not Loaded so load event is listening!...');
+                lotiplayer.addEventListener('load', function() {
+                console.log('🎯 2nd Loaded event fired!');
+            });
+        }
 
     // Play button
     playIcon.addEventListener('click', function() {
