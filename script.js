@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('▶️ Playing Lottie Click ');
                 }
         }
+    });
     // Play button
     playIcon.addEventListener('click', function() {
         try {
