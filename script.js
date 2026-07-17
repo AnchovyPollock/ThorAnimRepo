@@ -35,7 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                     console.log('✅ player found but ❌ Player NOT ready!');
                     // Force the component to load the Lottie file
-                    dotLottieInstance.load();
+                    lotiplayer.load(); // Force the component to load the file
+                    // dotLottieInstance.load();
                    }
             
             // Set marker if available
