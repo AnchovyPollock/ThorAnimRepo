@@ -35,8 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                     console.log('✅ player found but ❌ Player NOT ready!');
                     // Force the component to load the Lottie file
-                    lotiplayer.load(); // Force the component to load the file
-                    // dotLottieInstance.load();
+                    // lotiplayer.load(); gives error
+                    dotLottieInstance.load(); // Force the component to load the file
                    }
             
             // Set marker if available
@@ -89,7 +89,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     initLottie();
                     if (isReady && dotLottieInstance) {
+                        dotLottieInstance.setMarker('Orbit'); //Wizard
                         dotLottieInstance.play();
+                        console.log('▶️ Playing INTRO ');
                     }
                 }
             } else {
