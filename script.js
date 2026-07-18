@@ -98,9 +98,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                 console.log('♾️Lottie Click: not ready re-inited ');
                 initLottie();
-                // Create a custom event with optional data
                 // Dispatch it on the element
-                lotiplayer.dispatchEvent(softEvent2);
+                // lotiplayer.dispatchEvent(softEvent2);
                 }
         } catch (error) {
             console.error('❌ Lottie Area click Error:', error)
