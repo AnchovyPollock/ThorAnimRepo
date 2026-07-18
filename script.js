@@ -75,6 +75,13 @@ document.addEventListener('DOMContentLoaded', function() {
             dotLottieInstance.play();
             } else if (!dotLottieInstance.isLoaded) {
                 console.log('🎯 Lottie initatied but not Loaded in 1st init...');
+                // Trigger soft event for soft bottun click
+                // Create a custom event with optional data
+                const softEvent = new CustomEvent("click", {  //customTrigger
+                      detail: { source: "soft trigger" }
+                });
+                // Dispatch it on the element
+                playIcon.dispatchEvent(softEvent);
             } // else if
         else if (dotLottieInstance.isLoaded) {console.log('🎯 LOADED in 1st init');}
     //}}
