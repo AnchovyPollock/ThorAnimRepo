@@ -19,12 +19,16 @@ document.addEventListener('DOMContentLoaded', function() {
     let dotLottieInstance = null;
     let isReady = false;
     //Fired when the WASM module is loaded and the player is ready.
-    lotiplayer.addEventListener('ready', () => {
+        lotiplayer.addEventListener('ready', () => {
         isReady = dotLottieInstance.isReady; //true;
         console.log('Player is ready');
         dotLottieInstance.autoplay = true;
         dotLottieInstance.loop = true;
         dotLottieInstance.play();
+    });
+    lotiplayer.addEventListener('load', function() {
+           console.log('🎯 1st Load event fired!');
+           // initLottie(); 
     });
 
     function initLottie() {
@@ -65,18 +69,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Try immediate init
     if (!initLottie()) {
-        console.log('⏳ Waiting for load...');
-        lotiplayer.addEventListener('load', function() {
-            console.log('🎯 1st Load event fired!');
-            initLottie(); });
+        console.log('⏳ init failed and Waiting for load event...');
         } else if (!dotLottieInstance.isLoaded) {
                 console.log('🎯 Lottie initatied but not Loaded so load event is listening!...');
-                lotiplayer.addEventListener('load', function() {
-                console.log('🎯 2nd Loaded event fired!');
-            });
+            }
         if (dotLottieInstance.isReady) {console.log('🎯 READY in 1st init');}
         if (dotLottieInstance.isLoaded) {console.log('🎯 LOADED in 1st init');}
-        }
+    }
 
     // Lottie does not have a click event so code below needs to change
     lotiplayer.addEventListener('click', function() {
