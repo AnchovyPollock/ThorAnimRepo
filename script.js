@@ -90,8 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
     lotiplayer.addEventListener('click', function() {
         console.log('🔳🔳 Area click triggered🔳🔳');
         try {
-            if (isReady && dotLottieInstance) {
-                dotLottieInstance.load();
+            if (isReady && dotLottieInstance) {    
                 dotLottieInstance.setMarker('Orbit'); //Wizard
                 dotLottieInstance.play();
                 console.log('▶️ Playing Lottie Click ');
