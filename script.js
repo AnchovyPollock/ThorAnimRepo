@@ -95,6 +95,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 dotLottieInstance.setMarker('Orbit'); //Wizard
                 dotLottieInstance.play();
                 console.log('▶️ Playing Lottie Click ');
+                } else {
+                console.log('♾️Lottie Click: not ready re-inited ');
+                initLottie();
                 }
         } catch (error) {
             console.error('❌ Lottie Area click Error:', error)
