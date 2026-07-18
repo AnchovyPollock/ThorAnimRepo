@@ -8,10 +8,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const audio = document.getElementById('audioPlayer');
     const playIcon = document.getElementById('playAudio');
     const lotiplayer = document.getElementById('dotlottiePlayer');
+    
+    // Create a custom event with optional data
     const softEvent = new CustomEvent('click', {  //customTrigger
         detail: { source: "soft trigger" }
         });
-    
+    const softEvent2 = new CustomEvent('click', {  //customTrigger
+        detail: { source: "soft trigger" }
+        });
+                
     if (!lotiplayer) {
         console.error('❌ Player not found!');
         return;
@@ -78,14 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
             dotLottieInstance.play();
             } else if (!dotLottieInstance.isLoaded) {
                 console.log('🎯 Lottie initatied but not Loaded in 1st init...');
-                // Trigger soft event for soft bottun click
-                // Create a custom event with optional data
-                const softEvent2 = new CustomEvent('click', {  //customTrigger
-                      detail: { source: "soft trigger" }
-                });
-                // Dispatch it on the element
-                playIcon.dispatchEvent(softEvent2);
-            } // else if
+                } // else if
         else if (dotLottieInstance.isLoaded) {console.log('🎯 LOADED in 1st init');}
     //}}
 
@@ -102,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 initLottie();
                 // Create a custom event with optional data
                 // Dispatch it on the element
-                lotiplayer.dispatchEvent(softEvent);
+                lotiplayer.dispatchEvent(softEvent2);
                 }
         } catch (error) {
             console.error('❌ Lottie Area click Error:', error)
