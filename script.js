@@ -76,8 +76,8 @@ document.addEventListener('DOMContentLoaded', function() {
         else {
             if (dotLottieInstance.isReady) {console.log('🎯 READY in 1st init');}
             if (dotLottieInstance.isLoaded) {console.log('🎯 LOADED in 1st init');}
-        }
-    }
+        };
+    //}}
 
     // Lottie does not have a click event so code below needs to change
     lotiplayer.addEventListener('click', function() {
