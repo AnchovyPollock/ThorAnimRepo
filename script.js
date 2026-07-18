@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let isReady = false;
     //Fired when the WASM module is loaded and the player is ready.
     lotiplayer.addEventListener('ready', () => {
+        isReady = dotLottieInstance.isReady; //true;
         console.log('Player is ready');
         dotLottieInstance.autoplay = true;
         dotLottieInstance.loop = true;
@@ -29,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function initLottie() {
         if (lotiplayer.dotLottie) {
             dotLottieInstance = lotiplayer.dotLottie;
-            isReady = dotLottieInstance.isReady; //true;
+            isReady = dotLottieInstance.isReady; //true or flase ?
             if (dotLottieInstance.isReady) {
                 console.log('✅ Lottie ready');
             } else {
@@ -42,10 +43,10 @@ document.addEventListener('DOMContentLoaded', function() {
             // Set marker if available
             try {
                 if (typeof dotLottieInstance.setMarker === 'function') {
-                    // dotLottieInstance.setMarker('Orbit'); //Wizard
+                    dotLottieInstance.setMarker('Orbit'); //Wizard
                     // dotLottieInstance.setSegment(75,400);                    
                     console.log('✅ Marker / segment set');
-                    const markers = dotLottieInstance.markers(1);
+                    const markers = dotLottieInstance.markers[1];
                     console.log('🖊️'+markers); //
                     if (isReady && dotLottieInstance) {
                         dotLottieInstance.autoplay = true;
