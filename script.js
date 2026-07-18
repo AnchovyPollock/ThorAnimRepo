@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const audio = document.getElementById('audioPlayer');
     const playIcon = document.getElementById('playAudio');
     const lotiplayer = document.getElementById('dotlottiePlayer');
+    const softEvent = new CustomEvent('click', {  //customTrigger
+        detail: { source: "soft trigger" }
+        });
     
     if (!lotiplayer) {
         console.error('❌ Player not found!');
@@ -86,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
         else if (dotLottieInstance.isLoaded) {console.log('🎯 LOADED in 1st init');}
     //}}
 
-    // Lottie does not have a click event so code below needs to change
+    // Lottie click event
     lotiplayer.addEventListener('click', function() {
         console.log('🔳🔳 Area click triggered🔳🔳');
         try {
@@ -97,6 +100,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                 console.log('♾️Lottie Click: not ready re-inited ');
                 initLottie();
+                // Create a custom event with optional data
+                // Dispatch it on the element
+                lotiplayer.dispatchEvent(softEvent);
                 }
         } catch (error) {
             console.error('❌ Lottie Area click Error:', error)
@@ -144,10 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Create a custom event with optional data
-    const softEvent = new CustomEvent('click', {  //customTrigger
-        detail: { source: "soft trigger" }
-        });
-        // Dispatch it on the element
-        lotiplayer.dispatchEvent(softEvent);
+    // Dispatch it on the element
+    lotiplayer.dispatchEvent(softEvent);
     console.log('🎮 Setup complete');
 });
